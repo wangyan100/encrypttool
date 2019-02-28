@@ -1,0 +1,52 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.sf.proguard:proguard-gradle:6.1.0beta2'
+    }
+}
+
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java-library'
+    id 'application'
+}
+
+mainClassName = "org.tool.EnDeCrypt"
+
+dependencies {
+    // This dependency is exported to consumers, that is to say found on their compile classpath.
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation 'com.google.guava:guava:23.0'
+    
+    // https://mvnrepository.com/artifact/org.jasypt/jasypt
+	implementation  'org.jasypt:jasypt:1.9.2'
+
+    //special jars for openjdk 11.0.2
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+	implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
+	implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
+	implementation 'javax.xml.soap:javax.xml.soap-api:1.4.0'
+   	implementation 'com.sun.activation:javax.activation:1.2.0'
+   	
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+/*
+task proguard(type: proguard.gradle.ProGuardTask) {
+  configuration 'proguard.txt'
+
+  injars 'build/libs/cloudia-encrypttool.jar'
+  outjars 'build/libs/cloudia-encrypttool-obfuscate.jar'
+}*/
